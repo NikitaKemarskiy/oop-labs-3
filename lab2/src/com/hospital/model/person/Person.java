@@ -9,7 +9,7 @@ public abstract class Person extends IdObject {
     private String surname;
     private Date birthday;
 
-    Person(int id, String name, String surname, Date birthday) {
+    public Person(int id, String name, String surname, Date birthday) {
         super(id);
         this.name = name;
         this.surname = surname;

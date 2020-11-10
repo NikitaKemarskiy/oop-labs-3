@@ -27,8 +27,8 @@ public class Doctor extends Person {
 
     /*** Doctor with patients number class ***/
     public static class DoctorPatientsNumber {
-        Doctor doctor;
-        int patientsNumber;
+        private Doctor doctor;
+        private int patientsNumber;
 
         public DoctorPatientsNumber(Doctor doctor, int patientsNumber) {
             this.doctor = doctor;

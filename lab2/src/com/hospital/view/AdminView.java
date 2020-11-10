@@ -99,7 +99,7 @@ public class AdminView extends View {
             System.out.println("\t2. Дата рождения");
             int option = scan.nextInt();
             scan.nextLine();
-            if (!validateDoctorsSortAttribute(option)) {
+            if (!validatePatientsSortAttribute(option)) {
                 System.out.println("Введено некорректное значение. Попробуйте снова");
                 continue;
             }
