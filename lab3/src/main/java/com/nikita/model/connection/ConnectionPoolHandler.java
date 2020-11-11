@@ -31,8 +31,6 @@ public class ConnectionPoolHandler {
                 dataSource.setUrl(properties.getProperty("url"));
                 dataSource.setUsername(properties.getProperty("username"));
                 dataSource.setPassword(properties.getProperty("password"));
-                // dataSource.setMinIdle(Integer.parseInt(properties.getProperty("min.idle")));
-                // dataSource.setMaxIdle(Integer.parseInt(properties.getProperty("max.idle")));
                 dataSource.setDriverClassName(properties.getProperty("driver.class.name"));
 
                 ConnectionPoolHandler.dataSource = dataSource;
