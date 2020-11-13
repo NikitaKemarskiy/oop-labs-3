@@ -18,4 +18,18 @@ public class DoctorMapper implements EntityMapper<Doctor> {
             .category(DoctorCategory.builder().id(resultSet.getInt("categoryId")).build())
             .build();
     }
+
+    public Doctor extractFromResultSetWithRelations(ResultSet resultSet) throws SQLException {
+        DoctorCategory doctorCategory = DoctorCategory.builder()
+            .id(resultSet.getInt("categoryId"))
+            .name(resultSet.getString("categoryName"))
+            .build();
+        return Doctor.builder()
+            .id(resultSet.getInt("id"))
+            .name(resultSet.getString("name"))
+            .surname(resultSet.getString("surname"))
+            .birthday(resultSet.getObject("birthday", LocalDate.class))
+            .category(doctorCategory)
+            .build();
+    }
 }

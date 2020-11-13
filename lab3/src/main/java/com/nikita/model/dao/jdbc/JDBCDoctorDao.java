@@ -2,11 +2,13 @@ package com.nikita.model.dao.jdbc;
 
 import com.nikita.model.dao.DoctorDao;
 import com.nikita.model.dao.mapper.DoctorMapper;
+import com.nikita.model.dao.query.DoctorCategoryQuery;
 import com.nikita.model.dao.query.DoctorQuery;
 import com.nikita.model.entity.Doctor;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -83,6 +85,44 @@ public class JDBCDoctorDao implements DoctorDao {
         } catch (SQLException err) {
             System.err.println(err);
         }
+    }
+
+    @Override
+    public List<Doctor> findAllWithRelations() {
+        List<Doctor> doctors = new ArrayList<>();
+        try (Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery(DoctorQuery.FIND_ALL_WITH_RELATIONS);
+            while (resultSet.next()) {
+                doctors.add(doctorMapper.extractFromResultSetWithRelations(resultSet));
+            }
+        } catch (SQLException err) {
+            System.err.println(err);
+        }
+        return doctors;
+    }
+
+    @Override
+    public List<Doctor> findByCategoriesWithRelations(int[] categories) {
+        List<Doctor> doctors = new ArrayList<>();
+        String[] paramsArr = new String[categories.length];
+        Arrays.fill(paramsArr, "?");
+        String sql = String.format(
+            DoctorQuery.FIND_BY_CATEGORIES_WITH_RELATIONS,
+            String.join(",", paramsArr)
+        );
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            for (int i = 0; i < categories.length; i++) {
+                statement.setInt(i + 1, categories[i]);
+            }
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                doctors.add(doctorMapper.extractFromResultSetWithRelations(resultSet));
+            }
+        } catch (SQLException err) {
+            System.err.println(err);
+        }
+        return doctors;
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.nikita.model.dao.jdbc;
 import com.nikita.model.dao.DoctorCategoryDao;
 import com.nikita.model.dao.mapper.DoctorCategoryMapper;
 import com.nikita.model.dao.query.DoctorCategoryQuery;
+import com.nikita.model.entity.Doctor;
 import com.nikita.model.entity.DoctorCategory;
 
 import java.sql.*;

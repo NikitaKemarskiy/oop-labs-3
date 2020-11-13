@@ -8,4 +8,6 @@ public class AdminQuery {
     public static String FIND_ALL = "select * from admins";
     public static String UPDATE = "update admins set username = ?, password = ? where id = ?";
     public static String DELETE = "delete from admins where id = ?";
+
+    public static String FIND_BY_USERNAME = "select * from admins where username = ?";
 }

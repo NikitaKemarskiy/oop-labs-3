@@ -82,6 +82,21 @@ public class JDBCAdminDao implements AdminDao {
     }
 
     @Override
+    public Optional<Admin> findByUsername(String username) {
+        Admin admin = null;
+        try (PreparedStatement statement = connection.prepareStatement(AdminQuery.FIND_BY_USERNAME)) {
+            statement.setString(1, username);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                admin = adminMapper.extractFromResultSet(resultSet);
+            }
+        } catch (SQLException err) {
+            System.err.println(err);
+        }
+        return Optional.ofNullable(admin);
+    }
+
+    @Override
     public void close() {
         try {
             connection.close();
