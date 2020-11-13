@@ -9,7 +9,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Properties;
 
-public class ConnectionPoolHandler {
+public class ConnectionPoolHolder {
     private static final String PROPERTIES_FILE_NAME = "/db.properties";
     private static DataSource dataSource;
 
@@ -18,7 +18,7 @@ public class ConnectionPoolHandler {
             Path propertiesPath = null;
 
             try {
-                propertiesPath = Paths.get(ConnectionPoolHandler.class.getResource(PROPERTIES_FILE_NAME).toURI());
+                propertiesPath = Paths.get(ConnectionPoolHolder.class.getResource(PROPERTIES_FILE_NAME).toURI());
             } catch (URISyntaxException err) {
                 System.err.println(err);
             }
@@ -33,7 +33,7 @@ public class ConnectionPoolHandler {
                 dataSource.setPassword(properties.getProperty("password"));
                 dataSource.setDriverClassName(properties.getProperty("driver.class.name"));
 
-                ConnectionPoolHandler.dataSource = dataSource;
+                ConnectionPoolHolder.dataSource = dataSource;
             } catch (Exception err) {
                 System.err.println("XXX Error: DB connection failed");
                 System.err.println(err);
