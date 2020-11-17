@@ -21,7 +21,19 @@
     </servlet>
     <servlet>
         <servlet-name>AdminDoctors</servlet-name>
-        <servlet-class>com.nikita.controller.servlet.admin.DoctorsServlet</servlet-class>
+        <servlet-class>com.nikita.controller.servlet.admin.AdminDoctorsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminPatients</servlet-name>
+        <servlet-class>com.nikita.controller.servlet.admin.AdminPatientsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DoctorPatients</servlet-name>
+        <servlet-class>com.nikita.controller.servlet.doctor.DoctorPatientsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DoctorMedicalCardsRecords</servlet-name>
+        <servlet-class>com.nikita.controller.servlet.doctor.DoctorMedicalCardsRecordsServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -43,5 +55,17 @@
     <servlet-mapping>
         <servlet-name>AdminDoctors</servlet-name>
         <url-pattern>/admin/doctors</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminPatients</servlet-name>
+        <url-pattern>/admin/patients</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DoctorPatients</servlet-name>
+        <url-pattern>/doctor/patients</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DoctorMedicalCardsRecords</servlet-name>
+        <url-pattern>/doctor/medicalCardsRecords</url-pattern>
     </servlet-mapping>
 </web-app>

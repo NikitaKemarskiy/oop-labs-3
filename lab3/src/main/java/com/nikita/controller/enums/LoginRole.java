@@ -1,4 +1,4 @@
-package com.nikita.controller.role;
+package com.nikita.controller.enums;
 
 public enum LoginRole {
     ADMIN,

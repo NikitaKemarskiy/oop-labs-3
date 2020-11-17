@@ -1,16 +1,18 @@
 package com.nikita.model.entity;
 
-public class MedicalCardTreatment {
+public class MedicalCardRecordTreatment {
     private int id;
-    private MedicalCard medicalCard;
+    private MedicalCardRecord medicalCardRecord;
     private Treatment treatment;
     private int amount;
+    private int amountLeft;
 
-    public MedicalCardTreatment(int id, MedicalCard medicalCard, Treatment treatment, int amount) {
+    public MedicalCardRecordTreatment(int id, MedicalCardRecord medicalCardRecord, Treatment treatment, int amount, int amountLeft) {
         this.id = id;
-        this.medicalCard = medicalCard;
+        this.medicalCardRecord = medicalCardRecord;
         this.treatment = treatment;
         this.amount = amount;
+        this.amountLeft = amountLeft;
     }
 
     public int getId() {
@@ -21,12 +23,12 @@ public class MedicalCardTreatment {
         this.id = id;
     }
 
-    public MedicalCard getMedicalCard() {
-        return medicalCard;
+    public MedicalCardRecord getMedicalCardRecord() {
+        return medicalCardRecord;
     }
 
-    public void setMedicalCard(MedicalCard medicalCard) {
-        this.medicalCard = medicalCard;
+    public void setMedicalCardRecord(MedicalCardRecord medicalCardRecord) {
+        this.medicalCardRecord = medicalCardRecord;
     }
 
     public Treatment getTreatment() {
@@ -45,23 +47,32 @@ public class MedicalCardTreatment {
         this.amount = amount;
     }
 
+    public int getAmountLeft() {
+        return amountLeft;
+    }
+
+    public void setAmountLeft(int amountLeft) {
+        this.amountLeft = amountLeft;
+    }
+
     public static MedicalCardTreatmentBuilder builder() {
         return new MedicalCardTreatmentBuilder();
     }
 
     public static class MedicalCardTreatmentBuilder {
         private int id;
-        private MedicalCard medicalCard;
+        private MedicalCardRecord medicalCardRecord;
         private Treatment treatment;
         private int amount;
+        private int amountLeft;
 
         public MedicalCardTreatmentBuilder id(int id) {
             this.id = id;
             return this;
         }
 
-        public MedicalCardTreatmentBuilder medicalCard(MedicalCard medicalCard) {
-            this.medicalCard = medicalCard;
+        public MedicalCardTreatmentBuilder medicalCardRecord(MedicalCardRecord medicalCardRecord) {
+            this.medicalCardRecord = medicalCardRecord;
             return this;
         }
 
@@ -75,8 +86,13 @@ public class MedicalCardTreatment {
             return this;
         }
 
-        public MedicalCardTreatment build() {
-            return new MedicalCardTreatment(id, medicalCard, treatment, amount);
+        public MedicalCardTreatmentBuilder amountLeft(int amountLeft) {
+            this.amountLeft = amountLeft;
+            return this;
+        }
+
+        public MedicalCardRecordTreatment build() {
+            return new MedicalCardRecordTreatment(id, medicalCardRecord, treatment, amount, amountLeft);
         }
     }
 }

@@ -5,6 +5,7 @@ import com.nikita.model.dao.mapper.DoctorMapper;
 import com.nikita.model.dao.query.DoctorCategoryQuery;
 import com.nikita.model.dao.query.DoctorQuery;
 import com.nikita.model.entity.Doctor;
+import com.nikita.util.ArrayUtil;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -104,8 +105,7 @@ public class JDBCDoctorDao implements DoctorDao {
     @Override
     public List<Doctor> findByCategoriesWithRelations(int[] categories) {
         List<Doctor> doctors = new ArrayList<>();
-        String[] paramsArr = new String[categories.length];
-        Arrays.fill(paramsArr, "?");
+        String[] paramsArr = new ArrayUtil().getStringArrayFilledWith(categories.length, "?");
         String sql = String.format(
             DoctorQuery.FIND_BY_CATEGORIES_WITH_RELATIONS,
             String.join(",", paramsArr)

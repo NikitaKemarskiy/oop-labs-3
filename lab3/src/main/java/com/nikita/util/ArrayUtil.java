@@ -1,11 +1,11 @@
 package com.nikita.util;
 
+import java.util.Arrays;
+
 public class ArrayUtil {
-    public static int[] getIntArray(Integer[] arr) {
-        int[] intArr = new int[arr.length];
-        for (int i = 0; i < arr.length; i++) {
-            intArr[i] = arr[i];
-        }
-        return intArr;
+    public String[] getStringArrayFilledWith(int length, String fill) {
+        String[] arr = new String[length];
+        Arrays.fill(arr, fill);
+        return arr;
     }
 }

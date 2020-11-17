@@ -8,7 +8,8 @@ public interface DaoFactory {
     DoctorCategoryDao createDoctorCategoryDao();
     DoctorDao createDoctorDao();
     MedicalCardDao createMedicalCardDao();
-    MedicalCardTreatmentDao createMedicalCardTreatmentDao();
+    MedicalCardRecordDao createMedicalCardRecordDao();
+    MedicalCardRecordTreatmentDao createMedicalCardRecordTreatmentDao();
     NurseDao createNurseDao();
     PatientDao createPatientDao();
     TreatmentCategoryDao createTreatmentCategoryDao();

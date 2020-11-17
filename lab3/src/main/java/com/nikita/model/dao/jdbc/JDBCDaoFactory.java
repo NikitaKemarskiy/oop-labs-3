@@ -31,8 +31,12 @@ public class JDBCDaoFactory implements DaoFactory {
         return new JDBCMedicalCardDao(getConnection());
     }
     @Override
-    public MedicalCardTreatmentDao createMedicalCardTreatmentDao() {
-        return new JDBCMedicalCardTreatmentDao(getConnection());
+    public MedicalCardRecordDao createMedicalCardRecordDao() {
+        return new JDBCMedicalCardRecordDao(getConnection());
+    }
+    @Override
+    public MedicalCardRecordTreatmentDao createMedicalCardRecordTreatmentDao() {
+        return new JDBCMedicalCardRecordTreatmentDao(getConnection());
     }
     @Override
     public NurseDao createNurseDao() {

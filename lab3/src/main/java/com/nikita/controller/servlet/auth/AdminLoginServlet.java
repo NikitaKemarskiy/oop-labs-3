@@ -1,7 +1,7 @@
 package com.nikita.controller.servlet.auth;
 
 import com.nikita.controller.command.auth.AdminLoginCommand;
-import com.nikita.controller.role.LoginRole;
+import com.nikita.controller.enums.LoginRole;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

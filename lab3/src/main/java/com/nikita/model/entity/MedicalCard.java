@@ -1,17 +1,12 @@
 package com.nikita.model.entity;
 
-import java.time.OffsetDateTime;
-import java.util.Set;
-
 public class MedicalCard {
     private int id;
     private Patient patient;
-    private Set<MedicalCardTreatment> medicalCardTreatments;
 
-    public MedicalCard(int id, Patient patient, Set<MedicalCardTreatment> medicalCardTreatments) {
+    public MedicalCard(int id, Patient patient) {
         this.id = id;
         this.patient = patient;
-        medicalCardTreatments = medicalCardTreatments;
     }
 
     public int getId() {
@@ -30,14 +25,6 @@ public class MedicalCard {
         this.patient = patient;
     }
 
-    public Set<MedicalCardTreatment> getMedicalCardTreatments() {
-        return medicalCardTreatments;
-    }
-
-    public void setMedicalCardTreatments(Set<MedicalCardTreatment> medicalCardTreatments) {
-        medicalCardTreatments = medicalCardTreatments;
-    }
-
     public static MedicalCardBuilder builder() {
         return new MedicalCardBuilder();
     }
@@ -45,7 +32,6 @@ public class MedicalCard {
     public static class MedicalCardBuilder {
         private int id;
         private Patient patient;
-        private Set<MedicalCardTreatment> medicalCardTreatments;
 
         public MedicalCardBuilder id(int id) {
             this.id = id;
@@ -57,13 +43,8 @@ public class MedicalCard {
             return this;
         }
 
-        public MedicalCardBuilder medicalCardTreatments(Set<MedicalCardTreatment> medicalCardTreatments) {
-            this.medicalCardTreatments = medicalCardTreatments;
-            return this;
-        }
-
         public MedicalCard build() {
-            return new MedicalCard(id, patient, medicalCardTreatments);
+            return new MedicalCard(id, patient);
         }
     }
 }
