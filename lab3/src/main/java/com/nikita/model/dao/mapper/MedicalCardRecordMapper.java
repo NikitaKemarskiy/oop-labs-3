@@ -22,20 +22,27 @@ public class MedicalCardRecordMapper implements EntityMapper<MedicalCardRecord> 
         Map<Integer, MedicalCardRecord> medicalCardRecordMap
     ) throws SQLException {
         MedicalCardRecord medicalCardRecord = makeUnique(medicalCardRecordMap, extractFromResultSet(resultSet));
-        MedicalCardRecordTreatment medicalCardRecordTreatment = MedicalCardRecordTreatment.builder()
+        int medicalCardTreatmentId = resultSet.getInt("medicalCardTreatmentId");
+        if (!resultSet.wasNull()) {
+            MedicalCardRecordTreatment medicalCardRecordTreatment = extractMedicalCardRecordFromResultSet(resultSet);
+            medicalCardRecord.getMedicalCardRecordTreatments().add(medicalCardRecordTreatment);
+        }
+        return medicalCardRecord;
+    }
+
+    public MedicalCardRecordTreatment extractMedicalCardRecordFromResultSet(ResultSet resultSet) throws SQLException {
+        return MedicalCardRecordTreatment.builder()
             .id(resultSet.getInt("medicalCardTreatmentId"))
             .treatment(
-                Treatment.builder()
-                    .id(resultSet.getInt("treatmentId"))
-                    .name(resultSet.getString("treatmentName"))
-                    .category(TreatmentCategory.builder().id(resultSet.getInt("treatmentCategoryId")).build())
-                    .build()
+                    Treatment.builder()
+                        .id(resultSet.getInt("treatmentId"))
+                        .name(resultSet.getString("treatmentName"))
+                        .category(TreatmentCategory.builder().id(resultSet.getInt("treatmentCategoryId")).build())
+                        .build()
             )
             .amount(resultSet.getInt("amount"))
             .amountLeft(resultSet.getInt("amountLeft"))
             .build();
-        medicalCardRecord.getMedicalCardRecordTreatments().add(medicalCardRecordTreatment);
-        return medicalCardRecord;
     }
 
     public MedicalCardRecord makeUnique(Map<Integer, MedicalCardRecord> medicalCardRecordMap, MedicalCardRecord entity) {

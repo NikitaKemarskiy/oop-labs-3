@@ -20,4 +20,12 @@ public class ServletUtil {
         LoginRole role = (LoginRole) httpSession.getAttribute("role");
         return isAuth != null && id != null && role != null && isAuth && role == LoginRole.DOCTOR;
     }
+
+    public boolean checkAuthNurse(HttpServletRequest req) {
+        HttpSession httpSession = req.getSession();
+        Boolean isAuth = (Boolean) httpSession.getAttribute("isAuth");
+        Integer id = (Integer) httpSession.getAttribute("id");
+        LoginRole role = (LoginRole) httpSession.getAttribute("role");
+        return isAuth != null && id != null && role != null && isAuth && role == LoginRole.NURSE;
+    }
 }

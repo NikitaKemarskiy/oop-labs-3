@@ -2,20 +2,19 @@ package com.nikita.controller.servlet.doctor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
-import com.nikita.controller.command.doctor.DoctorCreateMedicalCardRecordCommand;
-import com.nikita.controller.command.doctor.DoctorGetMedicalCardRecordsCommand;
+import com.nikita.controller.command.doctor.DoctorCreateDischargeCommand;
+import com.nikita.controller.command.doctor.DoctorGetDischargesCommand;
 import com.nikita.controller.servlet.util.ServletUtil;
-import com.nikita.model.entity.MedicalCardRecord;
+import com.nikita.model.entity.Discharge;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-public class DoctorMedicalCardsRecordsServlet extends HttpServlet {
+public class DoctorDischargesServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) {
         if (!new ServletUtil().checkAuthDoctor(req)) {
@@ -23,17 +22,8 @@ public class DoctorMedicalCardsRecordsServlet extends HttpServlet {
             return;
         }
 
-        HttpSession httpSession = req.getSession();
-        Integer id = (Integer) httpSession.getAttribute("id");
-        Integer patientId = Integer.parseInt(req.getParameter("patientId"));
-
-        if (id == null || patientId == null) {
-            resp.setStatus(400);
-            return;
-        }
-
-        DoctorGetMedicalCardRecordsCommand getMedicalCardRecordsCommand = new DoctorGetMedicalCardRecordsCommand(patientId);
-        List<MedicalCardRecord> patients = getMedicalCardRecordsCommand.execute();
+        DoctorGetDischargesCommand getDischargesCommand = new DoctorGetDischargesCommand();
+        List<Discharge> patients = getDischargesCommand.execute();
 
         resp.setContentType("text/yaml; charset=UTF-8");
 
@@ -54,20 +44,19 @@ public class DoctorMedicalCardsRecordsServlet extends HttpServlet {
             return;
         }
 
-        HttpSession httpSession = req.getSession();
-        Integer medicalCardId = Integer.parseInt(req.getParameter("medicalCardId"));
+        Integer patientId = Integer.parseInt(req.getParameter("patientId"));
         String diagnosis = req.getParameter("diagnosis");
 
-        if (medicalCardId == null || diagnosis == null) {
+        if (patientId == null || diagnosis == null) {
             resp.setStatus(400);
             return;
         }
 
-        DoctorCreateMedicalCardRecordCommand createMedicalCardRecordCommand = new DoctorCreateMedicalCardRecordCommand(
-            medicalCardId,
+        DoctorCreateDischargeCommand createDischargeCommand = new DoctorCreateDischargeCommand(
+            patientId,
             diagnosis
         );
-        createMedicalCardRecordCommand.execute();
+        createDischargeCommand.execute();
 
         resp.setStatus(200);
     }

@@ -32,8 +32,24 @@
         <servlet-class>com.nikita.controller.servlet.doctor.DoctorPatientsServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>DoctorMedicalCards</servlet-name>
+        <servlet-class>com.nikita.controller.servlet.doctor.DoctorMedicalCardsServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>DoctorMedicalCardsRecords</servlet-name>
         <servlet-class>com.nikita.controller.servlet.doctor.DoctorMedicalCardsRecordsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DoctorMedicalCardRecordsTreatments</servlet-name>
+        <servlet-class>com.nikita.controller.servlet.doctor.DoctorMedicalCardRecordsTreatmentsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DoctorDischarges</servlet-name>
+        <servlet-class>com.nikita.controller.servlet.doctor.DoctorDischargesServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NurseMedicalCardRecordsTreatments</servlet-name>
+        <servlet-class>com.nikita.controller.servlet.nurse.NurseMedicalCardRecordsTreatmentsServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -65,7 +81,23 @@
         <url-pattern>/doctor/patients</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>DoctorMedicalCards</servlet-name>
+        <url-pattern>/doctor/medicalCards</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>DoctorMedicalCardsRecords</servlet-name>
         <url-pattern>/doctor/medicalCardsRecords</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DoctorMedicalCardRecordsTreatments</servlet-name>
+        <url-pattern>/doctor/medicalCardRecordsTreatments</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DoctorDischarges</servlet-name>
+        <url-pattern>/doctor/discharges</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NurseMedicalCardRecordsTreatments</servlet-name>
+        <url-pattern>/nurse/medicalCardRecordsTreatments</url-pattern>
     </servlet-mapping>
 </web-app>
