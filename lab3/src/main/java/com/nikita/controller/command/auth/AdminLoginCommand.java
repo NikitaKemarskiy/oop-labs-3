@@ -1,6 +1,5 @@
 package com.nikita.controller.command.auth;
 
-
 import com.nikita.controller.command.Command;
 import com.nikita.model.service.AdminService;
 

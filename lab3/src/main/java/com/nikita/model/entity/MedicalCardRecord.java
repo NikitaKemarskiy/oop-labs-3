@@ -51,6 +51,32 @@ public class MedicalCardRecord {
         return new MedicalCardBuilder();
     }
 
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+
+        if(object == null || object.getClass() != this.getClass()) {
+            return false;
+        }
+
+        MedicalCardRecord medicalCardRecord = (MedicalCardRecord) object;
+
+        return
+            id == medicalCardRecord.id &&
+            (medicalCard == medicalCardRecord.medicalCard || medicalCard.equals(medicalCardRecord.medicalCard)) &&
+            (diagnosis == medicalCardRecord.diagnosis || diagnosis.equals(medicalCardRecord.diagnosis)) &&
+            (
+                medicalCardRecordTreatments == medicalCardRecord.medicalCardRecordTreatments ||
+                medicalCardRecordTreatments.equals(medicalCardRecord.medicalCardRecordTreatments)
+            );
+    }
+
+    @Override public int hashCode() {
+        return id;
+    }
+
     public static class MedicalCardBuilder {
         private int id;
         private MedicalCard medicalCard;

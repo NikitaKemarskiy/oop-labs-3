@@ -23,7 +23,7 @@ public class JDBCDoctorDao implements DoctorDao {
     }
 
     @Override
-    public void create (Doctor entity) {
+    public void create(Doctor entity) {
         try (PreparedStatement statement = connection.prepareStatement(DoctorQuery.CREATE)) {
             statement.setString(1, entity.getName());
             statement.setString(2, entity.getSurname());

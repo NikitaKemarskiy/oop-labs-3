@@ -11,7 +11,7 @@ public class MedicalCardRecordTreatmentService {
         daoFactory = new JDBCDaoFactory();
     }
 
-   public void updateMedicalCardRecordTreatment(int medicalCardRecordTreatmentId, int amountLeft) {
+    public void updateMedicalCardRecordTreatment(int medicalCardRecordTreatmentId, int amountLeft) {
         try (MedicalCardRecordTreatmentDao medicalCardRecordTreatmentDao = daoFactory.createMedicalCardRecordTreatmentDao()) {
             medicalCardRecordTreatmentDao.update(
                 MedicalCardRecordTreatment.builder()

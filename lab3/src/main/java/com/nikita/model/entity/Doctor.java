@@ -61,6 +61,30 @@ public class Doctor {
         return new DoctorBuilder();
     }
 
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+
+        if(object == null || object.getClass() != this.getClass()) {
+            return false;
+        }
+
+        Doctor doctor = (Doctor) object;
+
+        return
+            id == doctor.id &&
+            (name == doctor.name || name.equals(doctor.name)) &&
+            (surname == doctor.surname || surname.equals(doctor.surname)) &&
+            (birthday == doctor.birthday || birthday.equals(doctor.birthday)) &&
+            (category == doctor.category || category.equals(doctor.category));
+    }
+
+    @Override public int hashCode() {
+        return id;
+    }
+
     public static class DoctorBuilder {
         private int id;
         private String name;

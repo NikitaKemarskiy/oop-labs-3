@@ -1,7 +1,5 @@
 package com.nikita.model.entity;
 
-import java.time.OffsetDateTime;
-
 public class Admin {
     private int id;
     private String username;
@@ -39,6 +37,28 @@ public class Admin {
 
     public static AdminBuilder builder() {
         return new AdminBuilder();
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+
+        if(object == null || object.getClass() != this.getClass()) {
+            return false;
+        }
+
+        Admin admin = (Admin) object;
+
+        return
+            id == admin.id &&
+            username.equals(admin.username) &&
+            password.equals(admin.password);
+    }
+
+    @Override public int hashCode() {
+        return id;
     }
 
     public static class AdminBuilder {

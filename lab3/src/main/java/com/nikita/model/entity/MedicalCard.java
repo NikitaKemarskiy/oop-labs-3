@@ -29,6 +29,27 @@ public class MedicalCard {
         return new MedicalCardBuilder();
     }
 
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+
+        if(object == null || object.getClass() != this.getClass()) {
+            return false;
+        }
+
+        MedicalCard medicalCard = (MedicalCard) object;
+
+        return
+            id == medicalCard.id &&
+            (patient == medicalCard.patient || patient.equals(medicalCard.patient));
+    }
+
+    @Override public int hashCode() {
+        return id;
+    }
+
     public static class MedicalCardBuilder {
         private int id;
         private Patient patient;

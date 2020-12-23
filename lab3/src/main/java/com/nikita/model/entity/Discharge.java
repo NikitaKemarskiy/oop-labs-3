@@ -51,6 +51,29 @@ public class Discharge {
         return new DischargeBuilder();
     }
 
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+
+        if(object == null || object.getClass() != this.getClass()) {
+            return false;
+        }
+
+        Discharge discharge = (Discharge) object;
+
+        return
+            id == discharge.id &&
+            (createdAt == discharge.createdAt || createdAt.equals(discharge.createdAt)) &&
+            (patient == discharge.patient || patient.equals(discharge.patient)) &&
+            (diagnosis == discharge.diagnosis || diagnosis.equals(discharge.diagnosis));
+    }
+
+    @Override public int hashCode() {
+        return id;
+    }
+
     public static class DischargeBuilder {
         private int id;
         private OffsetDateTime createdAt;

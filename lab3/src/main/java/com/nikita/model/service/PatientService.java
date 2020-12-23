@@ -31,7 +31,7 @@ public class PatientService {
         }
     }
 
-    public List<Patient> getPatientsByDoctorIdWIthRelations(int doctorsId) {
+    public List<Patient> getPatientsByDoctorIdWithRelations(int doctorsId) {
         try (PatientDao patientDao = daoFactory.createPatientDao()) {
             return patientDao.findByDoctorsIdsWithRelations(doctorsId);
         }

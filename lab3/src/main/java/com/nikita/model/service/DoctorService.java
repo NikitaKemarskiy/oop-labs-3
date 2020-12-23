@@ -3,6 +3,7 @@ package com.nikita.model.service;
 import com.nikita.model.dao.AdminDao;
 import com.nikita.model.dao.DaoFactory;
 import com.nikita.model.dao.DoctorDao;
+import com.nikita.model.dao.PatientDao;
 import com.nikita.model.dao.jdbc.JDBCDaoFactory;
 import com.nikita.model.entity.Admin;
 import com.nikita.model.entity.Doctor;
@@ -34,15 +35,16 @@ public class DoctorService {
     }
 
     public Map<Integer, Integer> getDoctorsPatientsAmount(int[] ids) {
-        PatientService patientService = new PatientService();
-        List<Patient> patients = patientService.getPatientsByDoctorsIds(ids);
-        Map<Integer, Integer> doctorsPatientsAmount = new HashMap<>();
-        for (Patient patient : patients) {
-            int id = patient.getDoctor().getId();
-            int current = Optional.ofNullable(doctorsPatientsAmount.get(id)).orElse(0);
-            doctorsPatientsAmount.put(id, current + 1);
+        try (PatientDao patientDao = daoFactory.createPatientDao()) {
+            List<Patient> patients = patientDao.findByDoctorsIds(ids);
+            Map<Integer, Integer> doctorsPatientsAmount = new HashMap<>();
+            for (Patient patient : patients) {
+                int id = patient.getDoctor().getId();
+                int current = Optional.ofNullable(doctorsPatientsAmount.get(id)).orElse(0);
+                doctorsPatientsAmount.put(id, current + 1);
+            }
+            return doctorsPatientsAmount;
         }
-        return doctorsPatientsAmount;
     }
 
     public void createDoctor(String name, String surname, LocalDate birthday, int categoryId) {

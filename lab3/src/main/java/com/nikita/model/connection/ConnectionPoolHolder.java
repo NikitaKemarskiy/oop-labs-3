@@ -42,4 +42,12 @@ public class ConnectionPoolHolder {
         }
         return dataSource;
     }
+
+    public static DataSource getDatasource() {
+        return dataSource;
+    }
+
+    public static void setDataSource(DataSource dataSource) {
+        ConnectionPoolHolder.dataSource = dataSource;
+    }
 }

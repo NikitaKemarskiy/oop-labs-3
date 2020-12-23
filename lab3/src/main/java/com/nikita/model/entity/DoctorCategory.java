@@ -31,6 +31,27 @@ public class DoctorCategory {
         return new DoctorCategoryBuilder();
     }
 
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+
+        if(object == null || object.getClass() != this.getClass()) {
+            return false;
+        }
+
+        DoctorCategory doctorCategory = (DoctorCategory) object;
+
+        return
+            id == doctorCategory.id &&
+            (name == doctorCategory.name || name.equals(doctorCategory.name));
+    }
+
+    @Override public int hashCode() {
+        return id;
+    }
+
     public static class DoctorCategoryBuilder {
         private int id;
         private String name;

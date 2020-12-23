@@ -16,6 +16,6 @@ public class DoctorGetPatientsCommand implements Command<List<Patient>> {
     }
 
     public List<Patient> execute() {
-        return patientService.getPatientsByDoctorIdWIthRelations(id);
+        return patientService.getPatientsByDoctorIdWithRelations(id);
     }
 }
